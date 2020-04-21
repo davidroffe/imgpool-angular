@@ -13,18 +13,18 @@ export class PostService {
     const url = '/api/post/search';
 
     if (searchQuery.length) {
-      return this.http.get<any[]>(url, {
+      return this.http.get<Post[]>(url, {
         params: new HttpParams().set('searchQuery', searchQuery),
       });
     } else {
-      this.getPosts((0).toString());
+      return this.getPosts((0).toString());
     }
   }
 
   getPosts(offset?): Observable<Post[]> {
     const url = '/api/post/list';
 
-    return this.http.get<any[]>(url, {
+    return this.http.get<Post[]>(url, {
       params: new HttpParams().set('offset', offset),
     });
   }
