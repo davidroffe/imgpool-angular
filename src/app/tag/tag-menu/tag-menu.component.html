@@ -7,6 +7,7 @@
         [queryParams]="{ tag: tag.id }"
         [ngClass]="{ active: tag.active }"
         class="tag"
+        (click)="handleClick($event)"
       >
         {{ tag.name }}
       </a>

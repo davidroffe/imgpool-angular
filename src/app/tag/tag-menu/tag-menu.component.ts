@@ -22,15 +22,13 @@ export class TagMenuComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleClick(e: Event, tag: Tag) {
+  handleClick(e: Event) {
     e.preventDefault();
 
     const searchElement = e.target as HTMLInputElement;
     const searchQuery = searchElement.innerText;
 
-    this.postService.searchPosts(searchQuery).subscribe((data) => {
-      this.postStoreService.posts = data;
-      this.router.navigate(['/posts']);
-    });
+    this.postStoreService.postSearchQuery = searchQuery;
+    this.postStoreService.fetchPosts();
   }
 }
