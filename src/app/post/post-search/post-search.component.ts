@@ -18,13 +18,16 @@ export class PostSearchComponent implements OnInit {
     private postStoreService: PostStoreService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.postStoreService.postSearchQuery$.subscribe((searchQuery: string) => {
+      this.text = searchQuery;
+    });
+  }
 
   handleSubmit(e: Event) {
     e.preventDefault();
 
-    this.postService
-      .searchPosts(this.text)
-      .subscribe((posts: Post[]) => (this.postStoreService.posts = posts));
+    this.postStoreService.postSearchQuery = this.text;
+    this.postStoreService.fetchPosts();
   }
 }
