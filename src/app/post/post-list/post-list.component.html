@@ -1,0 +1,29 @@
+<section id="splash" *ngIf="!hasPosts">
+  <div id="splash-center">
+    <h1>IMGPOOL</h1>
+  </div>
+</section>
+
+<section id="post-list" *ngIf="hasPosts">
+  <app-tag-menu></app-tag-menu>
+  <a
+    *ngFor="let post of postStoreService.posts$ | async"
+    [routerLink]="['/post/' + post.id]"
+    class="post-item"
+  >
+    <img
+      [src]="post.thumbUrl"
+      alt="post.tag.map(tag => { return tag.name; })"
+    />
+  </a>
+  <div id="load-more-container">
+    <button
+      *ngIf="showLoadMore"
+      class="border-button"
+      id="load-more"
+      (click)="postStoreService.fetchPosts()"
+    >
+      Load More
+    </button>
+  </div>
+</section>

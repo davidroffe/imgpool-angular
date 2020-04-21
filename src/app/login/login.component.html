@@ -1,0 +1,87 @@
+<div id="account-center">
+    <ToastContainer />
+    <div id="center-box">
+      <form class="form-dark" onSubmit={handleSubmit}>
+        <div class="field-container">
+          <Input
+            id="email"
+            autoComplete={'off'}
+            type={'text'}
+            title={'Full Name'}
+            name={'email'}
+            value={props.email}
+            placeholder={'EMAIL'}
+            handleChange={handleChange}
+          />
+          {form === 'signUp' ? (
+            <Input
+              id="username"
+              autoComplete={'off'}
+              type={'text'}
+              title={'Username'}
+              name={'username'}
+              value={props.username}
+              placeholder={'USERNAME'}
+              handleChange={handleChange}
+            />
+          ) : null}
+          {form === 'signUp' || form === 'login' ? (
+            <Input
+              id="password"
+              autoComplete={'off'}
+              type={'password'}
+              title={'Password'}
+              name={'password'}
+              value={props.password}
+              placeholder={'PASSWORD'}
+              handleChange={handleChange}
+            />
+          ) : null}
+          {form === 'signUp' ? (
+            <Input
+              id="passwordConfirm"
+              autoComplete={'off'}
+              type={'password'}
+              title={'password-confirm'}
+              name={'password-confirm'}
+              value={props.passwordConfirm}
+              placeholder={'CONFIRM PASSWORD'}
+              handleChange={handleChange}
+            />
+          ) : null}
+        </div>
+        {form === 'signUp' ? <div id="recaptcha"></div> : null}
+        <Input
+          class="border-button"
+          type="submit"
+          value={(() => {
+            switch (form) {
+              case 'login':
+                return 'LOGIN';
+              case 'signUp':
+                return 'SIGN UP';
+              case 'forgotPassword':
+                return 'SEND EMAIL';
+            }
+          })()}
+        />
+        <p>
+          {canSignUp ? (
+            <span>
+              <button class="switch-form" onClick={switchForm}>
+                {form === 'login' ? 'Sign Up' : 'Login'}
+              </button>
+              <span> | </span>
+            </span>
+          ) : null}
+          <button
+            id="forgot-password"
+            class="switch-form"
+            onClick={switchForm}
+          >
+            Forgot Password
+          </button>
+        </p>
+      </form>
+    </div>
+  </div>

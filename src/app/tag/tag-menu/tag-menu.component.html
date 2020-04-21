@@ -1,0 +1,23 @@
+<aside id="tag-menu" [ngClass]="{ active: showMenu }">
+  <div class="body">
+    <nav>
+      <a
+        *ngFor="let tag of tagStoreService.tags$ | async"
+        [routerLink]="['/post']"
+        [queryParams]="{ tag: tag.id }"
+        [ngClass]="{ active: tag.active }"
+        class="tag"
+      >
+        {{ tag.name }}
+      </a>
+    </nav>
+  </div>
+  <button class="tab" (click)="showMenu = !showMenu">
+    <span class="burger">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </span>
+    <span class="text">View Tags</span>
+  </button>
+</aside>

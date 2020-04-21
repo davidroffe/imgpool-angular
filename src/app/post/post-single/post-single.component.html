@@ -1,0 +1,60 @@
+<section class="container" id="post-single" (click)="optionsMenu = false">
+  <!--<ToastContainer />-->
+  <!--<TagMenu tags={getTagsFromPosts(post)} />-->
+  <div class="image-container">
+    <div class="inner">
+      <div class="post-info">
+        <button class="toggle-options" (click)="toggleOptionsMenu($event)">
+          options <span>+</span>
+        </button>
+        <ul [ngClass]="{ active: optionsMenu }" class="options">
+          <li>
+            <button
+              [ngClass]="{ favorited: isFavorited() }"
+              class="toggle-fav"
+              (click)="toggleFavorite($event)"
+            >
+              <span class="icon">&hearts;</span>
+              <span class="text add">add to favorites</span>
+              <span class="text remove">remove from favorites</span>
+            </button>
+          </li>
+          <li [hidden]="!userStoreService.user.id">
+            <button
+              class="flag-post"
+              (click)="flagPost = { reason: flagPost.reason, show: true }"
+            >
+              <span class="icon flag">&#9873;</span>
+              <span class="text">flag post</span>
+            </button>
+          </li>
+
+          <li
+            [hidden]="
+              post.userId !== userStoreService.user.id &&
+              !userStoreService.user.admin
+            "
+          >
+            <button class="delete-post" (click)="deletePost($event)">
+              <span class="icon x">×</span>
+              <span class="text">delete post</span>
+            </button>
+          </li>
+        </ul>
+        <p class="poster">
+          posted by:{{ " " }}
+          <a [routerLink]="['/user/' + post.user.id]">{{
+            post.user.username
+          }}</a>
+        </p>
+      </div>
+      <img [src]="post.url" />
+    </div>
+  </div>
+  <!-- <flag-post
+        handleSubmit={handleFlagPostSubmit}
+        handleChange={handleFlagPostChange}
+        clearValues={clearFlagPost}
+        data={flagPost}
+      ></flag-post> -->
+</section>
