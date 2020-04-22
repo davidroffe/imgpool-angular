@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PostModule } from './post/post.module';
+import { AboutModule } from './about/about.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { PostModule } from './post/post.module';
     BrowserAnimationsModule,
     FormsModule,
     PostModule,
+    AboutModule,
     AppRoutingModule,
   ],
   providers: [],
