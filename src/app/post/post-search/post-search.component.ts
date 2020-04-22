@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PostService } from '../../core/post.service';
 import { PostStoreService } from '../../core/post-store.service';
-
-import { Post } from '../../shared/interfaces';
 
 @Component({
   selector: 'app-post-search',
@@ -13,10 +10,7 @@ import { Post } from '../../shared/interfaces';
 export class PostSearchComponent implements OnInit {
   text: string = '';
 
-  constructor(
-    private postService: PostService,
-    private postStoreService: PostStoreService
-  ) {}
+  constructor(private postStoreService: PostStoreService) {}
 
   ngOnInit(): void {
     this.postStoreService.postSearchQuery$.subscribe((searchQuery: string) => {
