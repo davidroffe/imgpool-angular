@@ -29,4 +29,11 @@ export class UserStoreService {
   set user(val: User) {
     this._user.next(val);
   }
+
+  setProp(name: string, val: any): void {
+    let user = this.user;
+
+    user[name] = val;
+    this._user.next(this.user);
+  }
 }
