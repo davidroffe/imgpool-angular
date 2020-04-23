@@ -1,29 +1,37 @@
-<form id="edit-form" class="form-light" (ngSubmit)="handleSubmit($event)">
+<form
+  id="edit-form"
+  class="form-light"
+  [formGroup]="editAccountForm"
+  (ngSubmit)="handleSubmit($event)"
+>
   <div class="field-container">
     <input
-      *ngIf="activeField === 'edit-username'"
+      *ngIf="editField === 'edit-username'"
       id="username"
       autoComplete="off"
       type="text"
       title="Username"
+      formControlName="username"
       name="username"
       placeholder="USERNAME"
     />
     <input
-      *ngIf="activeField === 'edit-email'"
+      *ngIf="editField === 'edit-email'"
       id="email"
       autoComplete="off"
       type="text"
       title="Email"
+      formControlName="email"
       name="email"
       placeholder="EMAIL"
     />
-    <div *ngIf="activeField === 'edit-password'">
+    <div *ngIf="editField === 'edit-password'">
       <input
         id="password"
         autoComplete="off"
         type="password"
         title="Password"
+        formControlName="password"
         name="password"
         placeholder="PASSWORD"
       />
@@ -32,14 +40,16 @@
         autoComplete="off"
         type="password"
         title="Password Confirm"
+        formControlName="passwordConfirm"
         name="password-confirm"
         placeholder="CONFIRM PASSWORD"
       />
     </div>
     <textarea
-      *ngIf="activeField === 'edit-bio'"
+      *ngIf="editField === 'edit-bio'"
       id="bio"
       title="Bio"
+      formControlName="bio"
       name="bio"
       value=""
       placeholder="BIO"

@@ -59,10 +59,19 @@ export class UserService {
       .subscribe(() => window.location.reload());
   }
 
-  editAccount(editAccountForm: FormGroup): Observable<any> {
+  editAccount(editAccountForm: object): Observable<any> {
     const url = '/api/user/edit';
 
-    return this.http.post<any>(url, editAccountForm);
+    let httpParams = new HttpParams();
+
+    for (const field in editAccountForm) {
+      if (editAccountForm.hasOwnProperty(field)) {
+        const element = editAccountForm[field];
+        httpParams = httpParams.set(field, editAccountForm[field]);
+      }
+    }
+
+    return this.http.post<any>(url, {}, { params: httpParams });
     // axios({
     //   url: url,
     //   method: 'post',

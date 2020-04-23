@@ -10,7 +10,7 @@ import { UserStoreService } from 'src/app/core/user-store.service';
   templateUrl: './account-edit.component.html',
 })
 export class AccountEditComponent implements OnInit {
-  @Input() activeField: string;
+  @Input() editField: string;
   editAccountForm: FormGroup;
 
   constructor(
@@ -20,13 +20,12 @@ export class AccountEditComponent implements OnInit {
     private userService: UserService,
     private userStoreService: UserStoreService
   ) {
-    this.activeField = this.data.activeField;
-    console.log(this.data);
+    this.editField = this.data.editField;
   }
 
   ngOnInit(): void {
     this.editAccountForm = this.formBuilder.group({
-      activeField: this.activeField,
+      editField: this.editField,
       username: '',
       email: '',
       password: '',
@@ -44,7 +43,7 @@ export class AccountEditComponent implements OnInit {
 
     let newErrorMessage = [];
 
-    if (this.activeField === 'edit-email') {
+    if (this.editField === 'edit-email') {
       if (
         this.editAccountForm.get('email').value === undefined ||
         this.editAccountForm.get('email').value === ''
@@ -57,7 +56,7 @@ export class AccountEditComponent implements OnInit {
         newErrorMessage.push('Please use a different email.');
       }
     }
-    if (this.activeField === 'edit-username') {
+    if (this.editField === 'edit-username') {
       if (
         this.editAccountForm.get('username').value === undefined ||
         this.editAccountForm.get('username').value === ''
@@ -70,12 +69,12 @@ export class AccountEditComponent implements OnInit {
         newErrorMessage.push('Please use a different username.');
       }
     }
-    if (this.activeField === 'edit-bio') {
+    if (this.editField === 'edit-bio') {
       if (this.editAccountForm.get('bio').value === undefined) {
         newErrorMessage.push('Error with bio.');
       }
     }
-    if (this.activeField === 'edit-password') {
+    if (this.editField === 'edit-password') {
       if (
         this.editAccountForm.get('password').value === undefined ||
         this.editAccountForm.get('password').value === ''
@@ -95,15 +94,19 @@ export class AccountEditComponent implements OnInit {
         //toast.error(error);
       });
     } else {
-      this.userService.editAccount(this.editAccountForm).subscribe((data) => {
-        if (data.status === 'success') {
-          // props.dispatch(setUser('email', res.data.email));
-          // props.dispatch(setUser('username', res.data.username));
-          // props.dispatch(setUser('bio', res.data.bio));
+      console.log(this.editAccountForm.value);
 
-          this.editAccountForm.reset();
-        }
-      });
+      this.userService
+        .editAccount(this.editAccountForm.value)
+        .subscribe((data) => {
+          if (data.status === 'success') {
+            data.loggedIn = true;
+            data.init = true;
+            this.userStoreService.user = data;
+            this.editAccountForm.reset();
+            this.close();
+          }
+        });
     }
   }
 }

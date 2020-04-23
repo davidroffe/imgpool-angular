@@ -30,7 +30,7 @@ export class AccountComponent implements OnInit {
 
   editAccountField(e: Event, field: string) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { activeField: field };
+    dialogConfig.data = { editField: field };
     const dialogRef = this.dialog.open(AccountEditComponent, dialogConfig);
   }
 
