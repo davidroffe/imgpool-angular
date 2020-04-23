@@ -1,19 +1,32 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Router, NavigationStart } from '@angular/router';
 
 import { UserService } from './user.service';
 import { User } from '../shared/interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class UserStoreService {
-  constructor(private userService: UserService) {}
+  constructor(private router: Router, private userService: UserService) {
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.userService.isAuthorized().subscribe((data: any) => {
+          if (data.valid) {
+            data.loggedIn = true;
+            data.init = true;
+            this.user = data;
+          } else {
+            this.setProp('init', true);
+          }
+        });
+      }
+    });
+  }
   private readonly _user = new BehaviorSubject<User>({
     id: 0,
     email: '',
     username: '',
     bio: '',
-    password: '',
-    passwordConfirm: '',
     loggedIn: false,
     admin: false,
     init: false,

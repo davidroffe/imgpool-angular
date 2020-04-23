@@ -8,6 +8,12 @@ import { FormGroup } from '@angular/forms';
 export class UserService {
   constructor(private http: HttpClient) {}
 
+  isAuthorized() {
+    const url = '/api/user/get/current';
+
+    return this.http.post(url, {});
+  }
+
   getSettingSignUp(): Observable<any> {
     const url = '/api/setting/signup';
 
