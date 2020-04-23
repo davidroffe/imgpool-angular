@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PostModule } from './post/post.module';
 import { AboutModule } from './about/about.module';
+import { AccountModule } from './account/account.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +20,8 @@ import { AboutModule } from './about/about.module';
     FormsModule,
     PostModule,
     AboutModule,
+    AccountModule,
+    LoginModule,
     AppRoutingModule,
   ],
   providers: [],

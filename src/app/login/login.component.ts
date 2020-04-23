@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
 
     let recaptchaResponse = '';
     let newErrorMessage = [];
-    console.log(formValue);
 
     if (
       this.loginForm.get('email').value === undefined ||

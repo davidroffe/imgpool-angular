@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
@@ -45,6 +45,18 @@ export class UserService {
     }
 
     return this.http.post<any>(url, {}, { params: httpParams });
+  }
+
+  logout(): void {
+    const url = '/api/user/logout';
+    const headers = new HttpHeaders().set(
+      'Content-Type',
+      'text/plain; charset=utf-8'
+    );
+
+    this.http
+      .post<any>(url, {}, { headers, responseType: 'text' as 'json' })
+      .subscribe(() => window.location.reload());
   }
 
   editAccount(editAccountForm: FormGroup): Observable<any> {

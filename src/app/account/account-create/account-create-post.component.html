@@ -1,0 +1,34 @@
+<form
+  id="post-form"
+  class="form-light"
+  [formGroup]="createPostForm"
+  (ngSubmit)="handleSubmit($event)"
+>
+  <div class="field-container">
+    <app-file-input
+      id="file"
+      title="Post"
+      name="post"
+      value=""
+    ></app-file-input>
+    <Input
+      id="source"
+      autoComplete="off"
+      type="text"
+      title="Source"
+      name="source"
+      value=""
+      placeholder="SOURCE URL"
+    />
+    <Input
+      id="tags"
+      autoComplete="off"
+      type="text"
+      title="Tags"
+      name="tags"
+      value=""
+      placeholder="TAGS"
+    />
+  </div>
+  <Input class="border-button" type="submit" />
+</form>

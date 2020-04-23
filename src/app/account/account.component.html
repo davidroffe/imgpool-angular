@@ -1,0 +1,63 @@
+<section class="container dashboard" id="account-dashboard">
+  <!-- <ToastContainer /> -->
+  <div
+    *ngIf="userStoreService.user.init && userStoreService.user.loggedIn"
+    class="inner"
+  >
+    <h1>
+      <span>Account</span>
+    </h1>
+    <div class="left">
+      <h2>Username</h2>
+      <div class="row">
+        <p>{{ userStoreService.user.username }}</p>
+        <button
+          id="edit-username"
+          (click)="editAccountField($event, 'edit-username')"
+        >
+          edit
+        </button>
+      </div>
+      <h2>Email</h2>
+      <div class="row">
+        <p>{{ userStoreService.user.email }}</p>
+        <button
+          id="edit-email"
+          (click)="editAccountField($event, 'edit-email')"
+        >
+          edit
+        </button>
+      </div>
+      <h2>Password</h2>
+      <div class="row">
+        <p>hidden</p>
+        <button
+          id="edit-password"
+          (click)="editAccountField($event, 'edit-password')"
+        >
+          edit
+        </button>
+      </div>
+      <h2>Bio</h2>
+      <div class="row">
+        <p *ngIf="userStoreService.user.bio">{{ userStoreService.user.bio }}</p>
+        <button id="edit-bio" (click)="editAccountField($event, 'edit-bio')">
+          edit
+        </button>
+      </div>
+    </div>
+    <div class="right">
+      <button
+        class="border-button"
+        id="create-post"
+        (click)="createNewPost($event)"
+      >
+        Create Post
+      </button>
+      <button class="border-button" id="logout" (click)="logout($event)">
+        Log Out
+      </button>
+    </div>
+  </div>
+  <!-- <Loader show={!props.userInit && !props.loggedIn} /> -->
+</section>
