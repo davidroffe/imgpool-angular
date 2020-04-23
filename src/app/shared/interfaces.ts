@@ -28,8 +28,6 @@ export interface User {
   email: string;
   username: string;
   bio: string;
-  password: string;
-  passwordConfirm: string;
   loggedIn: boolean;
   admin: boolean;
   init: boolean;
