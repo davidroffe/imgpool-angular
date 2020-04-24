@@ -1,0 +1,12 @@
+<div class="upload-container">
+  <button type="button" (click)="handleClick($event)">
+    {{ placeholder }}
+  </button>
+  <input
+    [style]="{ display: 'none' }"
+    id="file"
+    name="file"
+    type="file"
+    (change)="handleChange($event)"
+  />
+</div>
