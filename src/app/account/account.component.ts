@@ -35,11 +35,11 @@ export class AccountComponent implements OnInit {
   }
 
   createNewPost(e: Event) {
-    // const dialogConfig = new MatDialogConfig();
-    // const dialogRef = this.dialog.open(
-    //   AccountCreatePostComponent,
-    //   dialogConfig
-    // );
+    const dialogConfig = new MatDialogConfig();
+    const dialogRef = this.dialog.open(
+      AccountCreatePostComponent,
+      dialogConfig
+    );
   }
 
   logout(e: Event) {

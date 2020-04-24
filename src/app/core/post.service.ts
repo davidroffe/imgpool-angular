@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
@@ -51,5 +51,18 @@ export class PostService {
       {},
       { params: new HttpParams().set('postId', id.toString()) }
     );
+  }
+
+  createPost(
+    formData: FormData,
+    params: { source: string; tags: string }
+  ): Observable<any> {
+    const url = '/api/post/create';
+
+    return this.http.post<any>(url, formData, {
+      params: new HttpParams()
+        .set('source', params.source)
+        .set('tags', params.tags),
+    });
   }
 }

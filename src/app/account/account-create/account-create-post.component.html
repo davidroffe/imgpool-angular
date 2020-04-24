@@ -10,21 +10,25 @@
       title="Post"
       name="post"
       value=""
+      placeholder="CHOOSE FILE"
+      (fileSelected)="fileSelected($event)"
     ></app-file-input>
-    <Input
+    <input
       id="source"
       autoComplete="off"
       type="text"
       title="Source"
+      formControlName="source"
       name="source"
       value=""
       placeholder="SOURCE URL"
     />
-    <Input
+    <input
       id="tags"
       autoComplete="off"
       type="text"
       title="Tags"
+      formControlName="tags"
       name="tags"
       value=""
       placeholder="TAGS"
